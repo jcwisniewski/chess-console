@@ -9,9 +9,9 @@ namespace Tabuleiro
         public Board board { get; protected set; }
 
 
-        public Piece(Position position, Color color, Board board)
+        public Piece( Color color, Board board)
         {
-            this.position = position;
+            this.position = null;
             this.color = color;
             this.board = board;
             this.movementQuantity = 0;

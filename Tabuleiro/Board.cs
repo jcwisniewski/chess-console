@@ -18,5 +18,11 @@ namespace Tabuleiro
         {
             return pieces[row, column];
         }
+
+        public void AddPiece(Piece piece, Position position)
+        {
+            pieces[position.Row, position.Column] = piece;
+            piece.position = position;
+        }
     }
 }
