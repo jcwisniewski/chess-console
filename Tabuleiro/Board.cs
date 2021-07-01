@@ -1,4 +1,5 @@
-﻿
+﻿using Exceptions;
+
 namespace Tabuleiro
 {
      class Board
@@ -19,10 +20,43 @@ namespace Tabuleiro
             return pieces[row, column];
         }
 
+        public Piece piece(Position position)
+        {
+            return pieces[position.Row, position.Column];
+        }
+
+        public bool PieceExists(Position position)
+        {
+            ValidatePosition(position);
+            return piece(position) != null;
+        }
+
         public void AddPiece(Piece piece, Position position)
         {
+            if (PieceExists(position))
+            {
+                throw new BoardException("There is a piece on this position!");
+            }
             pieces[position.Row, position.Column] = piece;
             piece.position = position;
+        }
+
+        public bool PositionValid(Position position)
+        {
+            if(position.Row < 0 || position.Row >= rows || position.Column < 0 || position.Column >= columns)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        public void ValidatePosition(Position position)
+        {
+            if (!PositionValid(position))
+            {
+                throw new BoardException("Invalid position!");
+            }
         }
     }
 }
