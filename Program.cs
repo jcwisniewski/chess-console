@@ -8,7 +8,8 @@ namespace chess_console
         public static void Main(string[] args)
         {
 
-            Board board = new Board(8, 8);
+            Board bd = new Board(8, 8);
+            View.ShowBoardOnView(bd);
         }
 
     

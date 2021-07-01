@@ -1,7 +1,7 @@
 ﻿
 namespace Tabuleiro
 {
-    public class Board
+     class Board
     {
         public int rows { get; set; }
         public int columns { get; set; }
@@ -12,6 +12,11 @@ namespace Tabuleiro
             this.rows = rows;
             this.columns = columns;
             pieces = new Piece[rows, columns];  
+        }
+
+        public Piece piece(int row, int column)
+        {
+            return pieces[row, column];
         }
     }
 }
