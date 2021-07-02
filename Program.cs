@@ -9,30 +9,27 @@ namespace chess_console
     {
         public static void Main(string[] args)
         {
-            //try
-            //{
-            //    Board bd = new Board(8, 8);
+            try
+            {
+                Board bd = new Board(8, 8);
 
-            //    bd.AddPiece(new Rook(Color.Black, bd), new Position(0, 0));
-            //    bd.AddPiece(new Knight(Color.Black, bd), new Position(0, 9));
-            //    //bd.AddPiece(new Bishop(Color.Black, bd), new Position(0, 2));
-            //    //bd.AddPiece(new Queen(Color.Black, bd), new Position(0, 3));
-            //    //bd.AddPiece(new King(Color.Black, bd), new Position(0, 4));
-            //    //bd.AddPiece(new Bishop(Color.Black, bd), new Position(0, 5));
-            //    //bd.AddPiece(new Knight(Color.Black, bd), new Position(0, 6));
-            //    //bd.AddPiece(new Rook(Color.Black, bd), new Position(0, 7));
+                bd.AddPiece(new Rook(Color.Black, bd), new Position(0, 0));
+                bd.AddPiece(new Knight(Color.Black, bd), new Position(0, 1));
+                bd.AddPiece(new Knight(Color.White, bd), new Position(0, 5));
 
-            //    View.ShowBoardOnView(bd);
-            //}catch(BoardException e)
-            //{
-            //    Console.WriteLine(e.Message);
-            //}
+                //bd.AddPiece(new Bishop(Color.Black, bd), new Position(0, 2));
+                //bd.AddPiece(new Queen(Color.Black, bd), new Position(0, 3));
+                //bd.AddPiece(new King(Color.Black, bd), new Position(0, 4));
+                //bd.AddPiece(new Bishop(Color.Black, bd), new Position(0, 5));
+                //bd.AddPiece(new Knight(Color.Black, bd), new Position(0, 6));
+                //bd.AddPiece(new Rook(Color.Black, bd), new Position(0, 7));
 
-
-            ChessPosition cp = new ChessPosition('c', 7);
-
-            Console.WriteLine(cp);
-            Console.WriteLine(cp.toPosition());
+                View.ShowBoardOnView(bd);
+            }catch(BoardException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+          
         }
 
     

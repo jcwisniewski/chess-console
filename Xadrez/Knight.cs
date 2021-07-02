@@ -10,7 +10,7 @@ namespace Xadrez
         }
         public override string ToString()
         {
-            return "Kn";
+            return "N";
         }
 
     }
