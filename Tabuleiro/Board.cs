@@ -41,6 +41,18 @@ namespace Tabuleiro
             piece.position = position;
         }
 
+        public Piece RemovePiece (Position position)
+        {
+            if(piece(position) == null)
+            {
+                return null;
+            }
+
+            Piece aux = piece(position);
+            pieces[position.Row, position.Column] = null;
+            return aux;
+        }
+
         public bool PositionValid(Position position)
         {
             if(position.Row < 0 || position.Row >= rows || position.Column < 0 || position.Column >= columns)

@@ -16,6 +16,11 @@ namespace Tabuleiro
             this.board = board;
             this.movementQuantity = 0;
         }
+
+        public void MovementIncrementation()
+        {
+            movementQuantity++;
+        }
     } 
 
 

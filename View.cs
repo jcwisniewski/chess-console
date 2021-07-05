@@ -1,4 +1,5 @@
 ﻿using Tabuleiro;
+using Xadrez;
 using System;
 
 namespace chess_console
@@ -26,6 +27,7 @@ namespace chess_console
                 Console.WriteLine();
             }
             Console.Write("  a b c d e f g h");
+            Console.WriteLine();
         }
 
         public static void ShowPieceOnView(Piece piece)
@@ -41,6 +43,14 @@ namespace chess_console
                 Console.Write(piece);
                 Console.ForegroundColor = consoleColor;
             }
+        }
+
+        public  static ChessPosition ReadPositionKey()
+        {
+            string key = Console.ReadLine();
+            char column = key[0];
+            int row = int.Parse(key[1] + "");
+            return new ChessPosition(column, row);
         }
     }
 }
