@@ -18,116 +18,120 @@ namespace Xadrez
         public override bool[,] PossibleMoves()
         {
             bool[,] movementMatrix = new bool[board.rows, board.columns];
-            Position position = new Position(0, 0);
+             
+            Position positions = new Position(0, 0);
             //upside
-            position.setValues(position.Row - 1, position.Column);
-            while (board.PositionValid(position) && CanMove(position))
+            positions.setValues(position.Row - 1, position.Column);
+            while (board.PositionValid(positions) && CanMove(positions))
             {
-                movementMatrix[position.Row, position.Column] = true;
-                if (board.piece(position) != null && board.piece(position).color != color)
+                movementMatrix[positions.Row, positions.Column] = true;
+                if (board.piece(positions) != null && board.piece(positions).color != color)
                 {
                     break;
                 }
 
-                position.Row = position.Row - 1;
+                positions.setValues(positions.Row - 1, positions.Column);
+
             }
 
             //ne
-            position.setValues(position.Row - 1, position.Column + 1);
-            while (board.PositionValid(position) && CanMove(position))
+            positions.setValues(position.Row - 1, position.Column + 1);
+            while (board.PositionValid(positions) && CanMove(positions))
             {
-                movementMatrix[position.Row, position.Column] = true;
-                if (board.piece(position) != null && board.piece(position).color != color)
+                movementMatrix[positions.Row, positions.Column] = true;
+                if (board.piece(positions) != null && board.piece(positions).color != color)
                 {
                     break;
                 }
-                position.Row = position.Row - 1;
-                position.Column = position.Column + 1;
+                positions.setValues(positions.Row - 1, positions.Column + 1);
+
             }
 
             //right
-            position.setValues(position.Row, position.Column + 1);
-            while (board.PositionValid(position) && CanMove(position))
+            positions.setValues(position.Row, position.Column + 1);
+            while (board.PositionValid(positions) && CanMove(positions))
             {
-                movementMatrix[position.Row, position.Column] = true;
-                if (board.piece(position) != null && board.piece(position).color != color)
+                movementMatrix[positions.Row, positions.Column] = true;
+                if (board.piece(positions) != null && board.piece(positions).color != color)
                 {
                     break;
                 }
 
-                position.Column = position.Column + 1;
+                positions.setValues(positions.Row, positions.Column + 1);
+
             }
 
             //se
-            position.setValues(position.Row + 1, position.Column + 1);
-            while (board.PositionValid(position) && CanMove(position))
+            positions.setValues(position.Row + 1, position.Column + 1);
+            while (board.PositionValid(positions) && CanMove(positions))
             {
-                movementMatrix[position.Row, position.Column] = true;
-                if (board.piece(position) != null && board.piece(position).color != color)
+                movementMatrix[positions.Row, positions.Column] = true;
+                if (board.piece(positions) != null && board.piece(positions).color != color)
                 {
                     break;
                 }
 
-                position.Row = position.Row + 1;
+                positions.setValues(positions.Row + 1, positions.Column + 1);
 
-                position.Column = position.Column + 1;
             }
 
             //down
-            position.setValues(position.Row + 1, position.Column);
-            while (board.PositionValid(position) && CanMove(position))
+            positions.setValues(position.Row + 1, position.Column);
+            while (board.PositionValid(positions) && CanMove(positions))
             {
-                movementMatrix[position.Row, position.Column] = true;
-                if (board.piece(position) != null && board.piece(position).color != color)
+                movementMatrix[positions.Row, positions.Column] = true;
+                if (board.piece(positions) != null && board.piece(positions).color != color)
                 {
                     break;
                 }
 
-                position.Row = position.Row + 1;
+                positions.setValues(positions.Row + 1, positions.Column);
+
             }
 
             //sw
-            position.setValues(position.Row + 1, position.Column - 1);
-            while (board.PositionValid(position) && CanMove(position))
+            positions.setValues(position.Row + 1, position.Column - 1);
+            while (board.PositionValid(positions) && CanMove(positions))
             {
-                movementMatrix[position.Row, position.Column] = true;
-                if (board.piece(position) != null && board.piece(position).color != color)
+                movementMatrix[positions.Row, positions.Column] = true;
+                if (board.piece(positions) != null && board.piece(positions).color != color)
                 {
                     break;
                 }
 
-                position.Row = position.Row + 1;
+                positions.setValues(positions.Row + 1, positions.Column - 1);
 
-                position.Column = position.Column - 1;
 
 
             }
 
 
             //left
-            position.setValues(position.Row, position.Column - 1);
-            while (board.PositionValid(position) && CanMove(position))
+            positions.setValues(position.Row, position.Column - 1);
+            while (board.PositionValid(positions) && CanMove(positions))
             {
-                movementMatrix[position.Row, position.Column] = true;
-                if (board.piece(position) != null && board.piece(position).color != color)
+                movementMatrix[positions.Row, positions.Column] = true;
+                if (board.piece(positions) != null && board.piece(positions).color != color)
                 {
                     break;
                 }
 
-                position.Column = position.Column - 1;
+                positions.setValues(positions.Row, positions.Column - 1);
+
             }
 
             //nw
-            position.setValues(position.Row - 1, position.Column - 1);
-            while (board.PositionValid(position) && CanMove(position))
+            positions.setValues(position.Row - 1, position.Column - 1);
+            while (board.PositionValid(positions) && CanMove(positions))
             {
-                movementMatrix[position.Row, position.Column] = true;
-                if (board.piece(position) != null && board.piece(position).color != color)
+                movementMatrix[positions.Row, positions.Column] = true;
+                if (board.piece(positions) != null && board.piece(positions).color != color)
                 {
                     break;
                 }
 
-                position.Column = position.Column - 1;
+                positions.setValues(positions.Row - 1, positions.Column - 1);
+
             }
 
 

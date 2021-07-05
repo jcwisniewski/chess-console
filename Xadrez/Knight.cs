@@ -18,61 +18,62 @@ namespace Xadrez
         public override bool[,] PossibleMoves()
         {
             bool[,] movementMatrix = new bool[board.rows, board.columns];
-            Position position = new Position(0, 0);
+         
+            Position positions = new Position(0, 0);
             //upside right
-            position.setValues(position.Row - 2, position.Column + 1);
-            if (board.PositionValid(position) && CanMove(position))
+            positions.setValues(position.Row - 2, position.Column + 1);
+            if (board.PositionValid(positions) && CanMove(positions))
             {
-                movementMatrix[position.Row, position.Column] = true;
+                movementMatrix[positions.Row, positions.Column] = true;
             }
 
             //upside left
-            position.setValues(position.Row - 2, position.Column - 1);
-            if (board.PositionValid(position) && CanMove(position))
+            positions.setValues(position.Row - 2, position.Column - 1);
+            if (board.PositionValid(positions) && CanMove(positions))
             {
-                movementMatrix[position.Row, position.Column] = true;
+                movementMatrix[positions.Row, positions.Column] = true;
             }
 
             //right up
-            position.setValues(position.Row - 1, position.Column + 2);
-            if (board.PositionValid(position) && CanMove(position))
+            positions.setValues(position.Row - 1, position.Column + 2);
+            if (board.PositionValid(positions) && CanMove(positions))
             {
-                movementMatrix[position.Row, position.Column] = true;
+                movementMatrix[positions.Row, positions.Column] = true;
             }
 
             //right down
-            position.setValues(position.Row + 1, position.Column + 2);
-            if (board.PositionValid(position) && CanMove(position))
+            positions.setValues(position.Row + 1, position.Column + 2);
+            if (board.PositionValid(positions) && CanMove(positions))
             {
-                movementMatrix[position.Row, position.Column] = true;
+                movementMatrix[positions.Row, positions.Column] = true;
             }
 
             //down right
-            position.setValues(position.Row + 2, position.Column + 1);
-            if (board.PositionValid(position) && CanMove(position))
+            positions.setValues(position.Row + 2, position.Column + 1);
+            if (board.PositionValid(positions) && CanMove(positions))
             {
-                movementMatrix[position.Row, position.Column] = true;
+                movementMatrix[positions.Row, positions.Column] = true;
             }
 
             //down left
-            position.setValues(position.Row + 2, position.Column + 1);
-            if (board.PositionValid(position) && CanMove(position))
+            positions.setValues(position.Row + 2, position.Column + 1);
+            if (board.PositionValid(positions) && CanMove(positions))
             {
-                movementMatrix[position.Row, position.Column] = true;
+                movementMatrix[positions.Row, positions.Column] = true;
             }
 
             //left down
-            position.setValues(position.Row + 1, position.Column - 2);
-            if (board.PositionValid(position) && CanMove(position))
+            positions.setValues(position.Row + 1, position.Column - 2);
+            if (board.PositionValid(positions) && CanMove(positions))
             {
-                movementMatrix[position.Row, position.Column] = true;
+                movementMatrix[positions.Row, positions.Column] = true;
             }
 
             //left up
-            position.setValues(position.Row - 1, position.Column - 2);
-            if (board.PositionValid(position) && CanMove(position))
+            positions.setValues(position.Row - 1, position.Column - 2);
+            if (board.PositionValid(positions) && CanMove(positions))
             {
-                movementMatrix[position.Row, position.Column] = true;
+                movementMatrix[positions.Row, positions.Column] = true;
             }
 
             return movementMatrix;

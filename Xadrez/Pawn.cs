@@ -17,12 +17,12 @@ namespace Xadrez
         public override bool[,] PossibleMoves()
         {
             bool[,] movementMatrix = new bool[board.rows, board.columns];
-            Position position = new Position(0, 0);
+            Position positions = new Position(0, 0);
             //upside
-            position.setValues(position.Row - 1, position.Column);
-            if (board.PositionValid(position) && CanMove(position))
+            positions.setValues(position.Row - 1, position.Column);
+            if (board.PositionValid(positions) && CanMove(positions))
             {
-                movementMatrix[position.Row, position.Column] = true;
+                movementMatrix[positions.Row, positions.Column] = true;
             }
 
             return movementMatrix;

@@ -20,8 +20,14 @@ namespace chess_console
                     Console.Clear();
                     View.ShowBoardOnView(chessmatch.board);
 
+
+                    Console.WriteLine("Turno: " + chessmatch.turn);
+
+                    Console.WriteLine("Jogador: " + chessmatch.currentPlayer);
+
                     Console.WriteLine("Origem: ");
                     Position source = View.ReadPositionKey().toPosition();
+
 
                     bool[,] possibleMoves = chessmatch.board.piece(source).PossibleMoves();
 
@@ -32,7 +38,7 @@ namespace chess_console
                     Console.WriteLine("Destino: ");
                     Position destiny = View.ReadPositionKey().toPosition();
 
-                    chessmatch.PerformMove(source, destiny);
+                    chessmatch.PerformPlay(source, destiny);
                 }
 
 

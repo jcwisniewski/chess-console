@@ -9,70 +9,78 @@ namespace Xadrez
 
         }
 
-        public bool CanMove(Position position)
+        public override string ToString()
+        {
+            return "K";
+        }
+
+        private bool CanMove(Position position)
         {
             Piece piece = board.piece(position);
-            return piece == null || piece.color != this.color;
+            return piece == null || piece.color != color;
         }
+
+       
 
         public override bool[,] PossibleMoves()
         {
             bool[,] movementMatrix = new bool[board.rows, board.columns];
-            Position position = new Position(0, 0);
+          
+             Position positions = new Position(0,0);
             //upside
-            position.setValues(position.Row - 1, position.Column);
-                if(board.PositionValid(position) && CanMove(position))
+            positions.setValues(position.Row - 1, position.Column);
+                if(board.PositionValid(positions) && CanMove(positions))
             {
-                movementMatrix[position.Row, position.Column] = true;
+                movementMatrix[positions.Row, positions.Column] = true;
             }
 
             //ne
-            position.setValues(position.Row - 1, position.Column + 1);
-            if (board.PositionValid(position) && CanMove(position))
+            positions.setValues(position.Row - 1, position.Column + 1);
+            if (board.PositionValid(positions) && CanMove(positions))
             {
-                movementMatrix[position.Row, position.Column] = true;
+                movementMatrix[positions.Row, positions.Column] = true;
             }
 
             //right
-            position.setValues(position.Row, position.Column + 1);
-            if (board.PositionValid(position) && CanMove(position))
+            positions.setValues(position.Row, position.Column + 1);
+            if (board.PositionValid(positions) && CanMove(positions))
             {
-                movementMatrix[position.Row, position.Column] = true;
+                movementMatrix[positions.Row, positions.Column] = true;
             }
 
             //se
-            position.setValues(position.Row + 1, position.Column + 1);
-            if (board.PositionValid(position) && CanMove(position))
+            positions.setValues(position.Row + 1, position.Column + 1);
+            if (board.PositionValid(positions) && CanMove(positions))
             {
-                movementMatrix[position.Row, position.Column] = true;
+                movementMatrix[positions.Row, positions.Column] = true;
             }
 
             //downside
-            position.setValues(position.Row + 1, position.Column);
-            if (board.PositionValid(position) && CanMove(position))
+            positions.setValues(position.Row + 1, position.Column);
+            if (board.PositionValid(positions) && CanMove(positions))
             {
-                movementMatrix[position.Row, position.Column] = true;
+                movementMatrix[positions.Row, positions.Column] = true;
             }
 
             //sl
-            position.setValues(position.Row + 1, position.Column - 1);
-            if (board.PositionValid(position) && CanMove(position))
+            positions.setValues(position.Row + 1, position.Column - 1);
+            if (board.PositionValid(positions) && CanMove(positions))
             {
-                movementMatrix[position.Row, position.Column] = true;
+                movementMatrix[positions.Row, positions.Column] = true;
             }
 
             //left
-            position.setValues(position.Row, position.Column - 1);
-            if (board.PositionValid(position) && CanMove(position))
+            positions.setValues(position.Row, position.Column - 1);
+            if (board.PositionValid(positions) && CanMove(positions))
             {
-                movementMatrix[position.Row, position.Column] = true;
+                movementMatrix[positions.Row, positions.Column] = true;
             }
 
             //nl
-            position.setValues(position.Row - 1, position.Column - 1);
-            if (board.PositionValid(position) && CanMove(position))
+            positions.setValues(position.Row - 1, position.Column - 1);
+            if (board.PositionValid(positions) && CanMove(positions))
             {
-                movementMatrix[position.Row, position.Column] = true;
+                movementMatrix[positions.Row, positions.Column] = true;
             }
 
             return movementMatrix;
@@ -80,10 +88,7 @@ namespace Xadrez
 
 
         }
-        public override string ToString()
-        {
-            return "K";
-        }
+       
 
     }
 }
