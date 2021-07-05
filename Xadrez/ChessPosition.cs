@@ -10,8 +10,9 @@ namespace Xadrez
 
         public ChessPosition(char column, int row)
         {
-            this.row = row;
             this.column = column;
+            this.row = row;
+            
         }
 
         public Position toPosition()

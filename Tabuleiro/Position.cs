@@ -17,6 +17,12 @@ namespace Tabuleiro
             this.Column = column;
         }
 
+        public void setValues(int row, int column)
+        {
+            this.Row = row;
+            this.Column = column;
+        }
+
         public override string ToString()
         {
             return Row + "," + Column;

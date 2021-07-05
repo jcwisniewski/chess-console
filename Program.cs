@@ -23,6 +23,12 @@ namespace chess_console
                     Console.WriteLine("Origem: ");
                     Position source = View.ReadPositionKey().toPosition();
 
+                    bool[,] possibleMoves = chessmatch.board.piece(source).PossibleMoves();
+
+                    Console.Clear();
+                    View.ShowBoardOnView(chessmatch.board, possibleMoves);
+
+                    Console.WriteLine();
                     Console.WriteLine("Destino: ");
                     Position destiny = View.ReadPositionKey().toPosition();
 

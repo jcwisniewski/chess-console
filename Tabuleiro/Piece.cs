@@ -1,7 +1,7 @@
 ﻿
 namespace Tabuleiro
 {
-     class Piece
+     abstract class Piece
     {
         public Position position { get; set; }
         public Color color { get; protected set; }
@@ -21,6 +21,8 @@ namespace Tabuleiro
         {
             movementQuantity++;
         }
+
+        public abstract bool[,] PossibleMoves(); 
     } 
 
 
