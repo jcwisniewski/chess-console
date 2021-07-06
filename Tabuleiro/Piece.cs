@@ -22,6 +22,28 @@ namespace Tabuleiro
             movementQuantity++;
         }
 
+        public bool HasValidMoves()
+        {
+            bool[,] matrix = PossibleMoves();
+            for(int i=0; i < board.rows; i++)
+            {
+                for(int j=0; j < board.columns; j++)
+                {
+                    if (matrix[i, j])
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+        }
+
+        public bool CanMoveTo(Position position)
+        {
+            return PossibleMoves()[position.Row, position.Column];
+        }
+
         public abstract bool[,] PossibleMoves(); 
     } 
 

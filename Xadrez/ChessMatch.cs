@@ -1,4 +1,5 @@
 ﻿using Tabuleiro;
+using Exceptions;
 
 namespace Xadrez
 {
@@ -17,6 +18,34 @@ namespace Xadrez
             finishedMatch = false;
             AddPiecesOnBoard();
         }
+
+        public void ValidateSourcePosition(Position positions)
+        {
+            if(board.piece(positions) == null)
+            {
+                throw new BoardException("Não existe peça na posição de origem escolhida");
+            }
+            if(currentPlayer != board.piece(positions).color)
+            {
+                throw new BoardException("A peça de origem escolhida não é sua!");
+
+            }
+            if (!board.piece(positions).HasValidMoves())
+            {
+                throw new BoardException("Não existe movimentos validos para esta peça!");
+
+            }
+        }
+
+        public void ValidateDestinyPosition(Position source, Position destiny)
+        {
+            if (!board.piece(source).CanMoveTo(destiny))
+            {
+                throw new BoardException("Esse destino não é valido para esta peça!");
+            }
+        }
+
+
 
         private void ChangePlayer()
         {

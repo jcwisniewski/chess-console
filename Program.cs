@@ -17,28 +17,39 @@ namespace chess_console
 
                 while (!chessmatch.finishedMatch)
                 {
-                    Console.Clear();
-                    View.ShowBoardOnView(chessmatch.board);
+                    try
+                    {
+                        Console.Clear();
+                        View.ShowBoardOnView(chessmatch.board);
 
 
-                    Console.WriteLine("Turno: " + chessmatch.turn);
+                        Console.WriteLine("Turno: " + chessmatch.turn);
 
-                    Console.WriteLine("Jogador: " + chessmatch.currentPlayer);
+                        Console.WriteLine("Jogador: " + chessmatch.currentPlayer);
 
-                    Console.WriteLine("Origem: ");
-                    Position source = View.ReadPositionKey().toPosition();
+                        Console.WriteLine("Origem: ");
+                        Position source = View.ReadPositionKey().toPosition();
+                        chessmatch.ValidateSourcePosition(source);
 
 
-                    bool[,] possibleMoves = chessmatch.board.piece(source).PossibleMoves();
+                        bool[,] possibleMoves = chessmatch.board.piece(source).PossibleMoves();
 
-                    Console.Clear();
-                    View.ShowBoardOnView(chessmatch.board, possibleMoves);
+                        Console.Clear();
+                        View.ShowBoardOnView(chessmatch.board, possibleMoves);
 
-                    Console.WriteLine();
-                    Console.WriteLine("Destino: ");
-                    Position destiny = View.ReadPositionKey().toPosition();
+                        Console.WriteLine();
+                        Console.WriteLine("Destino: ");
+                        Position destiny = View.ReadPositionKey().toPosition();
+                        chessmatch.ValidateDestinyPosition(source, destiny);
 
-                    chessmatch.PerformPlay(source, destiny);
+                        chessmatch.PerformPlay(source, destiny);
+
+                    }catch(BoardException e)
+                    {
+                        Console.WriteLine(e.Message);
+                        Console.ReadLine();
+                    }
+                    
                 }
 
 
