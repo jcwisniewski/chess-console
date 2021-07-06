@@ -11,6 +11,8 @@ namespace Xadrez
         public  Color currentPlayer { get; private set; }
         public bool finishedMatch {get; private set;}
 
+        public  bool check { get; private set; }
+
         private HashSet<Piece> pieces;
 
         private HashSet<Piece> captured;
@@ -22,9 +24,54 @@ namespace Xadrez
             turn = 1;
             currentPlayer = Color.White;
             finishedMatch = false;
+            check = false;
             pieces = new HashSet<Piece>();
             captured = new HashSet<Piece>();
             AddPiecesOnBoard();
+        }
+
+        private Color Opponent(Color color)
+        {
+            if(color == Color.White)
+            {
+                return Color.Black;
+            }
+            else
+            {
+                return Color.White;
+            }
+        }
+
+        private Piece king (Color color)
+        {
+            foreach(Piece pc in PiecesInGame(color))
+            {
+                if(pc is King)
+                {
+                    return pc;
+                }
+            }
+
+            return null;
+        }
+
+        private bool IsCheck(Color color)
+        {
+            Piece R = king(color);
+            if(R == null)
+            {
+                throw new BoardException("Não tem rei da cor " + color + " no tabuleiro");
+            }
+            foreach(Piece pc in PiecesInGame(Opponent(color)))
+            {
+                bool[,] matrix = pc.PossibleMoves();
+                if(matrix[R.position.Row, R.position.Column])
+                {
+                    return true;
+                }
+            }
+            return false;
+
         }
 
         public void ValidateSourcePosition(Position positions)
@@ -67,7 +114,7 @@ namespace Xadrez
             }
         }
 
-        public void PerformMove(Position source, Position destiny)
+        public Piece PerformMove(Position source, Position destiny)
         {
             Piece piece = board.RemovePiece(source);
             piece.MovementIncrementation();
@@ -77,11 +124,38 @@ namespace Xadrez
             {
                 captured.Add(capturedPiece);
             }
+
+            return capturedPiece;
+        }
+
+        public void DeformMove(Position source, Position destiny, Piece capturedPiece)
+        {
+            Piece piece = board.RemovePiece(destiny);
+            piece.MovementDecrementation();
+            
+            if (capturedPiece != null)
+            {
+                board.AddPiece(capturedPiece, destiny);
+                captured.Remove(capturedPiece);
+            }
+
+            board.AddPiece(piece, source);
         }
 
         public  void PerformPlay(Position source, Position destiny)
         {
-            PerformMove(source, destiny);
+            Piece capturedPiece = PerformMove(source, destiny);
+            if (IsCheck(currentPlayer)){
+                DeformMove(source, destiny, capturedPiece);
+                throw new BoardException("Você não pode se colocar em cheque!");
+            }
+            if (IsCheck(Opponent(currentPlayer))){
+                check = true;
+            }
+            else
+            {
+                check = false;
+            }
             turn++;
             ChangePlayer();
         }

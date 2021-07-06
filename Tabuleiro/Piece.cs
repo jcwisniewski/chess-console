@@ -22,6 +22,11 @@ namespace Tabuleiro
             movementQuantity++;
         }
 
+        public void MovementDecrementation()
+        {
+            movementQuantity--;
+        }
+
         public bool HasValidMoves()
         {
             bool[,] matrix = PossibleMoves();

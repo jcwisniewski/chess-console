@@ -18,6 +18,11 @@ namespace chess_console
             Console.WriteLine("Turno: " + chessmatch.turn);
 
             Console.WriteLine("Jogador: " + chessmatch.currentPlayer);
+
+            if (chessmatch.check)
+            {
+                Console.WriteLine("XEQUE!");
+            }
         }
 
         public static void PrintCapturedPieces(ChessMatch chessmatch)
