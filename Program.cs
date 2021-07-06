@@ -45,6 +45,9 @@ namespace chess_console
                     }
                     
                 }
+                Console.Clear();
+
+                View.PrintChessMatch(chessmatch);
 
 
                 

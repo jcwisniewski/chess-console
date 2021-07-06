@@ -55,7 +55,7 @@ namespace Xadrez
             return null;
         }
 
-        private bool IsCheck(Color color)
+        public bool IsCheck(Color color)
         {
             Piece R = king(color);
             if(R == null)
@@ -72,6 +72,39 @@ namespace Xadrez
             }
             return false;
 
+        }
+
+        public bool IsCheckMate(Color color)
+        {
+            if (!IsCheck(color))
+            {
+                return false;
+            }
+            foreach(Piece piece in PiecesInGame(color))
+            {
+                bool[,] matrix = piece.PossibleMoves();
+                for(int i=0; i < board.rows ; i++)
+                { 
+
+                    for(int j=0; j < board.columns; j++)
+                    {
+                        if (matrix[i, j])
+                        {
+                            Position source = piece.position;
+                            Position destiny = new Position(i, j);
+                            Piece capturedPiece = PerformMove(source, destiny);
+                            bool testCheck = IsCheck(color);
+                            DeformMove(source, destiny, capturedPiece);
+                            if (!testCheck)
+                            {
+                                return false;
+                            }
+                        }
+                    }
+                }
+            }
+
+            return true;
         }
 
         public void ValidateSourcePosition(Position positions)
@@ -152,12 +185,22 @@ namespace Xadrez
             if (IsCheck(Opponent(currentPlayer))){
                 check = true;
             }
+          
             else
             {
                 check = false;
             }
-            turn++;
-            ChangePlayer();
+
+            if (IsCheckMate(Opponent(currentPlayer)))
+            {
+                finishedMatch = true;
+            }
+            else
+            {
+                turn++;
+                ChangePlayer();
+            }
+            
         }
 
         public HashSet<Piece> CapturedPieces(Color color)
@@ -197,14 +240,14 @@ namespace Xadrez
         private void AddPiecesOnBoard()
         {
 
-            InsertNewPiece('a', 1, new Rook(Color.White, board));
-            InsertNewPiece('b', 1, new Knight(Color.White, board));
-            InsertNewPiece('c', 1, new Bishop(Color.White, board));
-            InsertNewPiece('d', 1, new Queen(Color.White, board));
-            InsertNewPiece('e', 1, new King(Color.White, board));
-            InsertNewPiece('f', 1, new Bishop(Color.White, board));
-            InsertNewPiece('g', 1, new Knight(Color.White, board));
             InsertNewPiece('h', 1, new Rook(Color.White, board));
+            //InsertNewPiece('b', 1, new Knight(Color.White, board));
+            //InsertNewPiece('c', 1, new Bishop(Color.White, board));
+            //InsertNewPiece('d', 1, new Queen(Color.White, board));
+            InsertNewPiece('g', 1, new Rook(Color.White, board));
+            //InsertNewPiece('f', 1, new Bishop(Color.White, board));
+            //InsertNewPiece('g', 1, new Knight(Color.White, board));
+            InsertNewPiece('a', 1, new King(Color.White, board));
             //InsertNewPiece('a', 2, new Pawn(Color.White, board));
             //InsertNewPiece('b', 2, new Pawn(Color.White, board));
             //InsertNewPiece('c', 2, new Pawn(Color.White, board));
@@ -214,14 +257,14 @@ namespace Xadrez
             //InsertNewPiece('g', 2, new Pawn(Color.White, board));
             //InsertNewPiece('h', 2, new Pawn(Color.White, board));
 
-            InsertNewPiece('a', 8, new Rook(Color.Black, board));
-            InsertNewPiece('b', 8, new Knight(Color.Black, board));
-            InsertNewPiece('c', 8, new Bishop(Color.Black, board));
-            InsertNewPiece('d', 8, new Queen(Color.Black, board));
-            InsertNewPiece('e', 8, new King(Color.Black, board));
-            InsertNewPiece('f', 8, new Bishop(Color.Black, board));
-            InsertNewPiece('g', 8, new Knight(Color.Black, board));
-            InsertNewPiece('h', 8, new Rook(Color.Black, board));
+            InsertNewPiece('a', 8, new King(Color.Black, board));
+            //InsertNewPiece('b', 8, new Rook(Color.Black, board));
+            //InsertNewPiece('c', 8, new Rook(Color.Black, board));
+            //InsertNewPiece('d', 8, new Knight(Color.Black, board));
+            //InsertNewPiece('e', 8, new Knight(Color.Black, board));
+            //InsertNewPiece('f', 8, new Knight(Color.Black, board));
+            //InsertNewPiece('g', 8, new Knight(Color.Black, board));
+            //InsertNewPiece('h', 8, new Rook(Color.Black, board));
             //InsertNewPiece('a', 7, new Pawn(Color.Black, board));
             //InsertNewPiece('b', 7, new Pawn(Color.Black, board));
             //InsertNewPiece('c', 7, new Pawn(Color.Black, board));

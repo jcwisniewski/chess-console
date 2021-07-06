@@ -16,13 +16,22 @@ namespace chess_console
             PrintCapturedPieces(chessmatch);
 
             Console.WriteLine("Turno: " + chessmatch.turn);
-
-            Console.WriteLine("Jogador: " + chessmatch.currentPlayer);
-
-            if (chessmatch.check)
+            if (!chessmatch.finishedMatch)
             {
-                Console.WriteLine("XEQUE!");
+                Console.WriteLine("Jogador: " + chessmatch.currentPlayer);
+
+                if (chessmatch.check)
+                {
+                    Console.WriteLine("XEQUE!");
+                }
             }
+            else
+            {
+                Console.WriteLine("XEQUEMATE!");
+                Console.WriteLine("Vencedor: " + chessmatch.currentPlayer);
+            }
+
+          
         }
 
         public static void PrintCapturedPieces(ChessMatch chessmatch)
