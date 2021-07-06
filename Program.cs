@@ -20,13 +20,7 @@ namespace chess_console
                     try
                     {
                         Console.Clear();
-                        View.ShowBoardOnView(chessmatch.board);
-
-
-                        Console.WriteLine("Turno: " + chessmatch.turn);
-
-                        Console.WriteLine("Jogador: " + chessmatch.currentPlayer);
-
+                        View.PrintChessMatch(chessmatch);
                         Console.WriteLine("Origem: ");
                         Position source = View.ReadPositionKey().toPosition();
                         chessmatch.ValidateSourcePosition(source);

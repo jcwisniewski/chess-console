@@ -1,11 +1,53 @@
 ﻿using Tabuleiro;
 using Xadrez;
+using System.Collections.Generic;
 using System;
+
 
 namespace chess_console
 {
      class View
     {
+
+        public static void PrintChessMatch(ChessMatch chessmatch)
+        {
+            ShowBoardOnView(chessmatch.board);
+
+            PrintCapturedPieces(chessmatch);
+
+            Console.WriteLine("Turno: " + chessmatch.turn);
+
+            Console.WriteLine("Jogador: " + chessmatch.currentPlayer);
+        }
+
+        public static void PrintCapturedPieces(ChessMatch chessmatch)
+        {
+            Console.WriteLine("Peças capturadas: ");
+            Console.Write("Brancas: ");
+            PrintHashSet(chessmatch.CapturedPieces(Color.White));
+            Console.WriteLine();
+            Console.Write("Pretas: ");
+            ConsoleColor aux = Console.ForegroundColor;
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            PrintHashSet(chessmatch.CapturedPieces(Color.Black));
+            Console.ForegroundColor = aux;
+            Console.WriteLine();
+
+        }
+        
+
+        public static void PrintHashSet(HashSet<Piece> hashset)
+        {
+            Console.Write("[");
+            foreach(Piece pc in hashset)
+            {
+                Console.Write(pc + " ");
+            }
+            Console.Write("]");
+        }
+        
+
+        
         public static void ShowBoardOnView(Board board)
         {
             for(int i=0; i < board.rows; i++)
